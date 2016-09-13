@@ -1,8 +1,6 @@
 # Fluent::Plugin::OsmocomSpectrumSense
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fluent/plugin/`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+fluent-plugin-osmocom-spectrum-sense is an input plugin for Fluentd. It runs osmocom_spectrum_sense with specified arguments and extract frequencies, powers, noise floor (dBm) from its output.
 
 ## Installation
 
@@ -22,17 +20,33 @@ Or install it yourself as:
 
 ## Usage
 
+See samples/text.conf
+
+```
+<source>
+  @type osmocom_spectrum_sense
+
+ tag osmocom
+  minfreq 79000000
+  maxfreq 83000000
+  sample_rate 3200000
+  dwell_delay 1
+  tune_delay 1
+</source>
+```
+
+## Configuration
+
+|name|type|required?|corresponds to...|default|description|
+|:---|:---|:--------|:----------------|:------|:----------|
+|minfreq|int|required|min_freq|none|Minimum Frequency|
+|maxfreq|int|required|max_freq|none|Maximum Frequency|
+|sample_rate|int|optional|-s, --sample-rate|3200000 (3.2Msps)|Sample rate|
+|dwell_delay|float|optional|--dwell-delay|0.25 (0.25s)|Seconds to dwell at a given frequency|
+|tune_delay|float|optional|--tune-delay|0.25 (0.25s)|Seconds to delay after changing frequency|
+|channel_bandwidth|float|optional|-b, --channel-bandwidth|6250.0 (6.25KHz)|Channel bandwidth of fft bins in Hz|
+
 TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fluent-plugin-osmocom-spectrum-sense.
 
 
 ## License
