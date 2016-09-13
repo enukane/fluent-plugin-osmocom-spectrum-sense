@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "fluent-plugin-osmocom-spectrum-sense"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["enukane"]
   spec.email         = ["enukane@glenda9.org"]
 
-  spec.summary       = %q{nop}
-  spec.description   = %q{nop}
+  spec.summary       = %q{fluentd plugin for SDR input}
+  spec.description   = %q{fluentd plugin to get SDR input from osmocom_spectrum_sense}
   spec.homepage      = "https://github.com/enukane/fluent-plugin-osmocom-spectrum-sense"
   spec.license       = "MIT"
 
