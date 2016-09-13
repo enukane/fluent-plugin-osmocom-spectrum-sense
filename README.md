@@ -46,9 +46,6 @@ See samples/text.conf
 |tune_delay|float|optional|--tune-delay|0.25 (0.25s)|Seconds to delay after changing frequency|
 |channel_bandwidth|float|optional|-b, --channel-bandwidth|6250.0 (6.25KHz)|Channel bandwidth of fft bins in Hz|
 
-TODO: Write usage instructions here
-
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
