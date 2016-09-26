@@ -87,11 +87,11 @@ module Fluent
           match = line.match(REG)
           next unless match
           obj = {
-            :time => Time.parse(match[:time]),
-            :center_freq => match[:center_freq].to_f,
-            :freq => match[:freq].to_f,
-            :power_db => match[:power_db].to_f,
-            :noise_floor_db => match[:noise_floor_db].to_f,
+            "updated_at" => Time.parse(match[:time]),
+            "center_freq" => match[:center_freq].to_f,
+            "freq" => match[:freq].to_f,
+            "power_db" => match[:power_db].to_f,
+            "noise_floor_db" => match[:noise_floor_db].to_f,
           }
           log.debug "new osmocom_spectrum_sense input => #{obj}"
           collected << obj
@@ -102,8 +102,7 @@ module Fluent
       end
 
       collected.each do |obj|
-        time = obj[:time].nil? ? Engine.now : Fluent::EventTime.from_time(obj[:time])
-        obj.delete(:time) # including time could problem in some output plugin
+        time = obj["updated_at"].nil? ? Engine.now : Fluent::EventTime.from_time(obj["updated_at"])
         router.emit(@tag, time, obj)
       end
     rescue => e
