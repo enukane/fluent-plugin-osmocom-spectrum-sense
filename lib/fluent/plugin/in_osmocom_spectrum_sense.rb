@@ -103,6 +103,9 @@ module Fluent
 
       collected.each do |obj|
         time = obj["updated_at"].nil? ? Engine.now : Fluent::EventTime.from_time(obj["updated_at"])
+        if obj["updated_at"].is_a?(Time)
+          obj["updated_at"] = obj["updated_at"].strftime("%Y-%m-%d %H:%M:%S.%6N")
+        end
         router.emit(@tag, time, obj)
       end
     rescue => e
